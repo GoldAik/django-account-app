@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock head %}
+
+{% block body %}
+    <div class="center">
+        <p>Email verification</p>
+        <span>We sent a message to email: {{email}} for verification.</span>
+        <span>We waiting for you</span>
+        <span>If you do not verify the email, the account will be deleted within 24 hours</span>
+        <a href="{% url 'home' %}">Send again</a>
+        <a href="{% url 'logout' %}">Logout</a>
+    </div>
+{% endblock body %}

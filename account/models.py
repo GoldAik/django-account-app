@@ -10,7 +10,6 @@ class CustomUser(AbstractUser):
 
     # add unique to email field
     email = models.EmailField(_("email address"), 
-        blank=True, 
         unique=True,
         error_messages={
             "unique": _("A user with that email already exists."),

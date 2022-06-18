@@ -9,5 +9,22 @@
 {% endblock head %}
 
 {% block body %}
-    LOGIN
+    
+    <div class="center">
+        <p>Login Form</p>
+        <form action="" method="post">
+            {% csrf_token %}
+
+            <label for="login">Username or email</label>
+            <input type="text" name="login">
+
+            <label for="password">Password</label>
+            <input type="password" name="password">
+
+            <button type="submit">Login in</button>
+
+            <div class="do-not-have-account">You do not have an account? <a href="{% url 'register' %}"> Sign up </a> </div>
+        </form>
+    </div>
+
 {% endblock body %}
