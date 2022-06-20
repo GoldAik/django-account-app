@@ -23,8 +23,12 @@
 
             <label for="">{{form.password2.label}}</label>
             {{form.password2}}
-
-            <button type="submit" name="register_second_step" value="something">Email verification ></button>
+            
+            <div class="buttons">
+                <a class="button" href="{% url 'register-first-step' %}"> < Back</a>
+                <button type="submit">Email verification ></button>
+            </div>
+        
             <div class="have-account">Have an account? <a href="{% url 'login' %}"> Login in </a> </div>
 
             {{form.errors.username}}

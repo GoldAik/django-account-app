@@ -15,16 +15,16 @@
         <form action="" method="post">
             {% csrf_token %}
 
-            <label for="">{{form.first_name.label}}</label>
+            <label for="">{{form.first_name.label}} <span>(optional)</span></label>
             {{form.first_name}}
            
-            <label for="">{{form.last_name.label}}</label>
+            <label for="">{{form.last_name.label}} <span>(optional)</span></label>
             {{form.last_name}}
 
             <label for="">{{form.email.label}}</label>
             {{form.email}}
 
-            <button type="submit" name="register_first_step" value="something">Next step ></button>
+            <button type="submit">Next step ></button>
             <div class="have-account">Have an account? <a href="{% url 'login' %}"> Login in </a> </div>
 
             {{errors.first_name}}
