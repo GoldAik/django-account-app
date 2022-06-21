@@ -35,4 +35,43 @@
             {{form.errors.password2}}
         </form>
     </div>
+
+
+    <script>
+        const username_input = document.getElementById('id_username')
+        const password1_input = document.getElementById('id_password1')
+        const password2_input = document.getElementById('id_password2')
+
+        username_input.addEventListener('input', () => {
+            username_input.classList.remove('invalid')
+        }, false)
+
+        password2_input.addEventListener('input', () => {
+            password2_input.classList.remove('invalid')
+        }, false)
+
+        password1_input.addEventListener('input', () => {
+            password1_input.classList.remove('invalid')
+        }, false)
+
+
+        const invalidData = (id_elem) =>{
+            elem = document.getElementById(id_elem)
+            elem.classList.add('invalid')
+        }
+    </script>
+
+    {% if form.errors.username %}
+        <script>
+            invalidData('id_username')
+        </script>
+    {% endif %}
+
+    {% if form.errors.password2 %}
+        <script>
+            invalidData('id_password1')
+            invalidData('id_password2')
+        </script>
+    {% endif %}
+
 {% endblock body %}

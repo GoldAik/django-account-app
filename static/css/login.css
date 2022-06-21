@@ -96,3 +96,8 @@ a{
 a:hover{
     text-decoration: underline;
 }
+
+.invalid{
+    background-color: rgb(255, 200, 200);
+    border-color: red;
+}

@@ -25,10 +25,41 @@
 
             <div class="do-not-have-account">You do not have an account? <a href="{% url 'register' %}"> Sign up </a> </div>
 
-            {{form.errors.login}}
-            {{form.errors.password}}
-
         </form>
     </div>
+
+    <script>
+        const login_input = document.getElementById('id_login')
+        const password_input = document.getElementById('password_input')
+
+        login_input.addEventListener('input', () => {
+            login_input.classList.remove('invalid');
+        }, false)
+
+        password_input.addEventListener('input', () => {
+            password_input.classList.remove('invalid');
+        }, false)
+
+        const invalidLogin = () =>{
+            login_input.classList.add('invalid')
+        }
+    
+        const invalidData = () =>{
+            login_input.classList.add('invalid')
+            password_input.classList.add('invalid')
+        }
+    </script>
+
+    {% if form.errors.login %}
+        <script>
+            invalidLogin()
+        </script>
+    {% endif %}
+
+    {% if form.errors.password %}
+        <script>
+            invalidData()
+        </script>
+    {% endif %}
 
 {% endblock body %}

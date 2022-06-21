@@ -44,13 +44,13 @@ class RegisterBasicInfoForm(forms.ModelForm):
 
     def clean_first_name(self):
         first_name = self.cleaned_data.get('first_name')
-        if len(first_name) < 4 and first_name:
+        if len(first_name) < 3 and first_name:
             raise forms.ValidationError("To short first name")
         return first_name
 
     def clean_last_name(self):
         last_name = self.cleaned_data.get('last_name')
-        if len(last_name) < 4 and last_name:
+        if len(last_name) < 3 and last_name:
             raise forms.ValidationError("To short last name")
         return last_name
 
@@ -64,6 +64,9 @@ class RegisterLoginInfoForm(UserCreationForm):
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
+
+        if len(username) < 3:
+            raise forms.ValidationError("To short username")
 
         if username in not_allowed_usernames:
             raise forms.ValidationError("This is an invalid username")

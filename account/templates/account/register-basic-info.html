@@ -27,9 +27,52 @@
             <button type="submit">Next step ></button>
             <div class="have-account">Have an account? <a href="{% url 'login' %}"> Login in </a> </div>
 
-            {{errors.first_name}}
-            {{errors.last_name}}
-            {{errors.email}}
+            {{form.errors.first_name}}
+            {{form.errors.last_name}}
+            {{form.errors.email}}
         </form>
     </div>
+
+    <script>
+        const first_name_input = document.getElementById('id_first_name')
+        const last_name_input = document.getElementById('id_last_name')
+        const email_input = document.getElementById('id_email')
+
+        first_name_input.addEventListener('input', () => {
+            first_name_input.classList.remove('invalid')
+        }, false)
+
+        last_name_input.addEventListener('input', () => {
+            last_name_input.classList.remove('invalid')
+        }, false)
+
+        email_input.addEventListener('input', () => {
+            email_input.classList.remove('invalid')
+        }, false)
+
+
+        const invalidData = (id_elem) =>{
+            elem = document.getElementById(id_elem)
+            elem.classList.add('invalid')
+        }
+    </script>
+
+    {% if form.errors.first_name %}
+        <script>
+            invalidData('id_first_name')
+        </script>
+    {% endif %}
+
+    {% if form.errors.last_name %}
+        <script>
+            invalidData('id_last_name')
+        </script>
+    {% endif %}
+    
+    {% if form.errors.email %}
+        <script>
+            invalidData('id_email')
+        </script>
+    {% endif %}
+
 {% endblock body %}
