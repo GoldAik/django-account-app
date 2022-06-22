@@ -15,21 +15,54 @@
         <form action="" method="post">
             {% csrf_token %}
 
-            <label for="">{{form.first_name.label}} <span>(optional)</span></label>
-            {{form.first_name}}
-           
-            <label for="">{{form.last_name.label}} <span>(optional)</span></label>
-            {{form.last_name}}
+            <div class="data-field">
+                <label for="">{{form.first_name.label}} <span>(optional)</span></label>
+                <div class="input-holder">{{form.first_name}}
+                    {% if form.errors.first_name %}
 
-            <label for="">{{form.email.label}}</label>
-            {{form.email}}
+                    <div class="error-icon">
+                        <div class="error-message">
+                            {{form.errors.first_name}}
+                        </div>
+                    </div>
+
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="data-field">
+                <label for="">{{form.last_name.label}} <span>(optional)</span></label>
+                <div class="input-holder">{{form.last_name}}
+                    {% if form.errors.last_name %}
+
+                    <div class="error-icon">
+                        <div class="error-message">
+                            {{form.errors.last_name}}
+                        </div>
+                    </div>
+
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="data-field">
+                <label for="">{{form.email.label}}</label>
+                <div class="input-holder">{{form.email}}
+                    {% if form.errors.email %}
+
+                    <div class="error-icon">
+                        <div class="error-message">
+                            {{form.errors.email}}
+                        </div>
+                    </div>
+
+                    {% endif %}
+                </div>
+            </div>
 
             <button type="submit">Next step ></button>
             <div class="have-account">Have an account? <a href="{% url 'login' %}"> Login in </a> </div>
 
-            {{form.errors.first_name}}
-            {{form.errors.last_name}}
-            {{form.errors.email}}
         </form>
     </div>
 

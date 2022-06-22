@@ -54,6 +54,13 @@ class RegisterBasicInfoForm(forms.ModelForm):
             raise forms.ValidationError("To short last name")
         return last_name
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        qs = User.objects.filter(email__iexact=email)
+        if qs.exists():
+            raise forms.ValidationError("A user with that email already exists.")
+        return email
+
 
 not_allowed_usernames = []
 
@@ -69,6 +76,10 @@ class RegisterLoginInfoForm(UserCreationForm):
             raise forms.ValidationError("To short username")
 
         if username in not_allowed_usernames:
+            raise forms.ValidationError("This is an invalid username")
+
+        qs = User.objects.filter(username__iexact=username)
+        if qs.exists():
             raise forms.ValidationError("This is an invalid username")
 
         return username

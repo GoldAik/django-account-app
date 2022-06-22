@@ -15,11 +15,35 @@
         <form action="" method="post">
             {% csrf_token %}
 
-            <label for="login">{{form.login.label}}</label>
-            {{form.login}}
+            <div class="data-field">
+                <label for="login">{{form.login.label}}</label>
+                <div class="input-holder">{{form.login}}
+                    {% if form.errors.login %}
 
-            <label for="password">{{form.password.label}}</label>
-            {{form.password}}
+                    <div class="error-icon">
+                        <div class="error-message">
+                            {{form.errors.login}}
+                        </div>
+                    </div>
+
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="data-field">
+                <label for="password">{{form.password.label}}</label>
+                <div class="input-holder">{{form.password}}
+                    {% if form.errors.password %}
+
+                    <div class="error-icon">
+                        <div class="error-message">
+                            {{form.errors.password}}
+                        </div>
+                    </div>
+
+                    {% endif %}
+                </div>
+            </div>
 
             <button type="submit">Login in</button>
 

@@ -15,14 +15,56 @@
         <form action="" method="post">
             {% csrf_token %}
 
-            <label for="">{{form.username.label}}</label>
-            {{form.username}}
-           
-            <label for="">{{form.password1.label}}</label>
-            {{form.password1}}
+            <div class="data-field">
+                <label for="">{{form.username.label}}</label>
+                <div class="input-holder">
+                    {{form.username}}
 
-            <label for="">{{form.password2.label}}</label>
-            {{form.password2}}
+                    {% if form.errors.username %}
+
+                    <div class="error-icon">
+                        <div class="error-message">
+                            {{form.errors.username}}
+                        </div>
+                    </div>
+
+                    {% endif %}
+
+                </div>
+            </div>
+            <div class="data-field">
+                <label for="">{{form.password1.label}}</label>
+                <div class="input-holder">
+                    {{form.password1}}
+
+                    {% if form.errors.password1 %}
+
+                    <div class="error-icon">
+                        <div class="error-message">
+                            {{form.errors.password1}}
+                        </div>
+                    </div>
+
+                    {% endif %}
+                </div>
+            </div>
+            <div class="data-field">
+                <label for="">{{form.password2.label}}</label>
+                <div class="input-holder">
+                    {{form.password2}}
+
+                    {% if form.errors.password2 %}
+
+                    <div class="error-icon">
+                        <div class="error-message">
+                            {{form.errors.password2}}
+                        </div>
+                    </div>
+
+                    {% endif %}
+                </div>
+                
+            </div>
             
             <div class="buttons">
                 <a class="button" href="{% url 'register-first-step' %}"> < Back</a>
@@ -30,9 +72,6 @@
             </div>
         
             <div class="have-account">Have an account? <a href="{% url 'login' %}"> Login in </a> </div>
-
-            {{form.errors.username}}
-            {{form.errors.password2}}
         </form>
     </div>
 
