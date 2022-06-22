@@ -1,0 +1,6 @@
+{% autoescape off %}
+Welcome {{user.username}},
+it looks like you created an account with us - {{domain}}
+If you want to verify your account, please.
+http://{{ domain }}{% url 'verification-email' uidb64=uid token=token %}
+{% endautoescape %}
