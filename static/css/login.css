@@ -32,6 +32,10 @@ form{
     /* align-items: stretch; */
 }
 
+.data-field{
+    margin-bottom: 20px;
+}
+
 label{
     font-size: 17px;
     display: block;
@@ -50,8 +54,6 @@ input{
     padding-left: 10px;
     outline: none;
     font-size: 17px;
-
-    margin-bottom: 20px;
 }
 
 input:hover, input:focus{
@@ -162,4 +164,13 @@ a:hover{
 
     background-color: white;
     box-shadow: 0 0 10px gray;
+}
+
+.link-password{
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    color: gray;
+    text-align: right;
+    margin-top: 2px;
 }

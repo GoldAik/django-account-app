@@ -1,3 +1,4 @@
+from dataclasses import field
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy as _
@@ -83,3 +84,31 @@ class RegisterLoginInfoForm(UserCreationForm):
             raise forms.ValidationError("This is an invalid username")
 
         return username
+
+
+class RecoverPasswordEmailForm(forms.Form):
+    email = forms.EmailField()
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        qs = User.objects.filter(email__iexact = email)
+        if not qs.exists():
+            raise forms.ValidationError("This is an invalid email")
+        return email
+
+
+class RecoverPasswordNewPassword(forms.ModelForm):
+    password = forms.CharField(
+        label=_("New password"),
+        widget=forms.PasswordInput()
+    )
+    password2 = forms.CharField(
+        label=_("Password confirm"),
+        widget=forms.PasswordInput()
+    )
+
+    class Meta:
+        model = User
+        fields = ['password']
+
+    # add clean method

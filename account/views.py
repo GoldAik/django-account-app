@@ -5,9 +5,9 @@ from django.contrib.auth.decorators import login_required
 
 from django.http.response import Http404
 
-from .forms import RegisterBasicInfoForm, RegisterLoginInfoForm, LoginForm
+from .forms import RegisterBasicInfoForm, RegisterLoginInfoForm, LoginForm, RecoverPasswordEmailForm, RecoverPasswordNewPassword
 from .decorators import logout_required, email_verificated
-from .auth import username_from_login, send_verification_email, check_verification_url
+from .auth import username_from_login, send_verification_email, check_verification_url, send_email_recover_password, default_token_generator
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -114,3 +114,40 @@ def verification_email(request, uidb64, token):
         return redirect('home')
     else:
         return HttpResponse("Invalid")
+
+
+def recover_password_email(request):
+    form = RecoverPasswordEmailForm(request.POST or None)
+
+    if form.is_valid():
+        email = form.cleaned_data.get('email')
+        try:
+            user = User.objects.filter(email__iexact = email).first()
+        except User.DoesNotExist:
+            user = None
+        
+        if user:
+            send_email_recover_password(request, user)
+            return HttpResponse("Email was sent!")
+
+    return render(request, 'account/recover-password-email.html', {"form": form})
+
+
+def recover_password_new_password(request, uidb64, token):
+    form = RecoverPasswordNewPassword(request.POST or None)
+
+    if form.is_valid():
+
+        user = check_verification_url(uidb64, token, default_token_generator)
+
+        if user:
+            password = form.cleaned_data.get('password')
+            user.set_password(password)
+            user.save()
+
+            return HttpResponse('Password has been changed <a href="/login/">Login in</a>')
+        
+        else:
+            raise Http404
+
+    return render(request, 'account/recover-password-new-password.html', {"form": form})

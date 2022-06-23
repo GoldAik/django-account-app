@@ -33,6 +33,7 @@
             <div class="data-field">
                 <label for="password">{{form.password.label}}</label>
                 <div class="input-holder">{{form.password}}
+                    <a class="link-password" href="{% url 'recover-password-email' %}">Do not remember?</a>
                     {% if form.errors.password %}
 
                     <div class="error-icon">
