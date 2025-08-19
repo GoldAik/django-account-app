@@ -7,6 +7,14 @@ The project uses an SQLite database (by default).
 
 > **Note:** The project serves solely as an inspiration source and is not intended for production use. It does not include automated tests, which may affect stability and security in a production environment.
 
+#### Login page
+![Login Page Screenshot](images/login-page.png)
+
+#### Register page
+![Register Page Screenshot](images/register-second-step-1-field-incorrect.png)
+
+*For more screenshots, see the [`images/`](https://github.com/GoldAik/django-account-app/tree/main/images) directory.*
+
 ## Features
 - Login using username or email
 - User registration with email verification
